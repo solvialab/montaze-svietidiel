@@ -331,6 +331,46 @@
             <li><span>04</span><strong>Partnerstvo s významnými spoločnosťami — Casca a Quazar</strong></li>
             <li><span>05</span><strong>Spolupráca s architektmi a developermi — Compass Architekti a Sikard</strong></li>
           </ul>
+
+          <div class="client-showcase">
+            <div class="client-showcase-intro">
+              <span><i></i> Vybrané referencie</span>
+              <p>Od komerčných priestorov po spolupráce s architektmi a developermi.</p>
+            </div>
+
+            <div class="client-grid">
+              <article class="client-card client-card-featured">
+                <div class="client-card-meta"><span>Realizácia</span><b>01</b></div>
+                <strong>Slnečnice</strong>
+                <small>Sales Point · Petržalka</small>
+              </article>
+              <article class="client-card client-card-featured">
+                <div class="client-card-meta"><span>Realizácia</span><b>02</b></div>
+                <strong>Maskaľ</strong>
+                <small>Zlatníctvo · Košice</small>
+              </article>
+              <article class="client-card">
+                <div class="client-card-meta"><span>Architekti</span><b>03</b></div>
+                <strong>Compass</strong>
+                <small>Compass Architekti</small>
+              </article>
+              <article class="client-card">
+                <div class="client-card-meta"><span>Partnerstvo</span><b>04</b></div>
+                <strong>Casca</strong>
+                <small>Významná spoločnosť</small>
+              </article>
+              <article class="client-card">
+                <div class="client-card-meta"><span>Partnerstvo</span><b>05</b></div>
+                <strong>Quazar</strong>
+                <small>Významná spoločnosť</small>
+              </article>
+              <article class="client-card">
+                <div class="client-card-meta"><span>Developer</span><b>06</b></div>
+                <strong>Sikard</strong>
+                <small>Spolupráca na projektoch</small>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -351,6 +391,99 @@
               <small>Napíšte nám</small><strong>info@montaze-svietidiel.eu</strong><span>↗</span>
             </a>
           </div>
+
+          <form class="inquiry-form reveal" id="contact-form" action="mailto:info@montaze-svietidiel.eu" method="post" enctype="text/plain">
+            <div class="form-intro">
+              <div>
+                <span class="form-kicker"><i></i> Nezáväzný dopyt</span>
+                <h3>Čo potrebujete <em>rozsvietiť?</em></h3>
+                <p>Vyberte typ služby a napíšte nám základné informácie. Pripravíme si riešenie ešte pred prvým telefonátom.</p>
+              </div>
+              <span class="form-response"><i></i> Ozveme sa čo najskôr</span>
+            </div>
+
+            <fieldset class="form-section">
+              <legend><span>01</span> Typ služby</legend>
+              <div class="category-grid">
+                <label class="category-option">
+                  <input type="radio" name="category" value="Montáž svietidiel" required>
+                  <span><b>01</b><strong>Montáž svietidiel</strong><small>Interiér, exteriér a lustre</small></span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="LED pásy a úpravy">
+                  <span><b>02</b><strong>LED pásy a úpravy</strong><small>LED prestavby a stmievanie</small></span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Servis a opravy">
+                  <span><b>03</b><strong>Servis a opravy</strong><small>Svietidlá a elektroinštalácie</small></span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Návrh osvetlenia">
+                  <span><b>04</b><strong>Návrh osvetlenia</strong><small>Interiér aj exteriér</small></span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Elektroinštalačné práce">
+                  <span><b>05</b><strong>Elektroinštalácie</strong><small>Zásuvky, vypínače a ističe</small></span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Závesné elektrospotrebiče">
+                  <span><b>06</b><strong>Závesné spotrebiče</strong><small>Digestory, TV a podobne</small></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-section form-details-section">
+              <legend><span>02</span> Kontakt a detaily</legend>
+              <div class="form-grid">
+                <label class="form-field">
+                  <span>Meno a priezvisko *</span>
+                  <input type="text" name="name" autocomplete="name" maxlength="100" placeholder="Vaše meno" required>
+                </label>
+                <label class="form-field">
+                  <span>Telefón *</span>
+                  <input type="tel" name="phone" autocomplete="tel" maxlength="40" placeholder="+421 900 000 000" required>
+                </label>
+                <label class="form-field">
+                  <span>E-mail</span>
+                  <input type="email" name="email" autocomplete="email" maxlength="120" placeholder="vas@email.sk">
+                </label>
+                <label class="form-field">
+                  <span>Lokalita montáže *</span>
+                  <input type="text" name="location" autocomplete="address-level2" maxlength="120" placeholder="Mesto alebo mestská časť" required>
+                </label>
+                <label class="form-field">
+                  <span>Rozsah zákazky</span>
+                  <select name="scope">
+                    <option value="Neuvedené">Vyberte rozsah</option>
+                    <option value="1 svietidlo">1 svietidlo</option>
+                    <option value="2 až 5 svietidiel">2 až 5 svietidiel</option>
+                    <option value="6 a viac svietidiel">6 a viac svietidiel</option>
+                    <option value="Komerčný alebo väčší projekt">Komerčný alebo väčší projekt</option>
+                  </select>
+                </label>
+                <label class="form-field">
+                  <span>Preferovaný termín</span>
+                  <select name="term">
+                    <option value="Dohodou">Dohodou</option>
+                    <option value="Čo najskôr">Čo najskôr</option>
+                    <option value="Do 2 týždňov">Do 2 týždňov</option>
+                    <option value="Do 1 mesiaca">Do 1 mesiaca</option>
+                    <option value="Neskôr">Neskôr</option>
+                  </select>
+                </label>
+                <label class="form-field form-field-full">
+                  <span>Stručný popis *</span>
+                  <textarea name="message" rows="5" maxlength="1500" placeholder="Čo potrebujete namontovať alebo opraviť? Môžete uviesť typ stropu, počet svietidiel a ďalšie detaily." required></textarea>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="form-submit-row">
+              <p><i></i> Údaje použijeme iba na vybavenie vášho dopytu. Fotografiu môžete priložiť následne v e-maile.</p>
+              <button class="form-submit" type="submit"><span>Pripraviť dopyt</span><b>↗</b></button>
+            </div>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
 
           <div class="contact-details reveal">
             <div><small>Firma</small><strong>FLASH of LIGHT, s. r. o.</strong><span>IČO 48211222 · DIČ 2120092535 · IČ DPH SK2120092535</span></div>

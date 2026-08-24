@@ -92,6 +92,50 @@ if (lightbox && typeof lightbox.showModal === 'function' && galleryLinks.length)
   });
 }
 
+// The site stays fully static: the form prepares a structured e-mail locally.
+const inquiryForm = document.querySelector('#contact-form');
+const formStatus = inquiryForm?.querySelector('.form-status');
+
+inquiryForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const formData = new FormData(inquiryForm);
+  const category = String(formData.get('category') || 'Všeobecný dopyt');
+  const name = String(formData.get('name') || 'Neuvedené');
+  const phone = String(formData.get('phone') || 'Neuvedený');
+  const email = String(formData.get('email') || 'Neuvedený');
+  const location = String(formData.get('location') || 'Neuvedená');
+  const scope = String(formData.get('scope') || 'Neuvedený');
+  const term = String(formData.get('term') || 'Dohodou');
+  const message = String(formData.get('message') || 'Bez doplňujúcej správy');
+
+  const subject = `Dopyt z webu — ${category}`;
+  const body = [
+    'Dobrý deň,',
+    '',
+    `mám záujem o službu: ${category}`,
+    '',
+    `Meno: ${name}`,
+    `Telefón: ${phone}`,
+    `E-mail: ${email}`,
+    `Lokalita montáže: ${location}`,
+    `Rozsah zákazky: ${scope}`,
+    `Preferovaný termín: ${term}`,
+    '',
+    'Popis dopytu:',
+    message,
+    '',
+    'Fotografie môžem priložiť do tohto e-mailu.',
+  ].join('\n');
+
+  formStatus.textContent = 'Dopyt je pripravený. Otváram váš e-mailový program…';
+  window.location.href = `mailto:info@montaze-svietidiel.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  window.setTimeout(() => {
+    formStatus.textContent = 'Ak sa e-mail neotvoril, pošlite dopyt priamo na info@montaze-svietidiel.eu.';
+  }, 1400);
+});
+
 // Lightweight 3D parallax. The page remains fully usable without JavaScript.
 const hero = document.querySelector('.hero');
 const lampStage = document.querySelector('.lamp-stage');
