@@ -125,26 +125,17 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => mobileMenu.removeAttribute('open'));
 });
 
-// Visitors can pause the two continuously moving content elements.
-const updateMotionButton = (button, isPaused) => {
+// Keep the video control accessible while CSS draws the play/pause icon.
+const updateMediaButton = (button, isPaused) => {
   if (!button) return;
   button.setAttribute('aria-pressed', String(isPaused));
   button.setAttribute('aria-label', isPaused ? button.dataset.playLabel : button.dataset.pauseLabel);
-  button.querySelector('span').textContent = isPaused ? '▶' : 'Ⅱ';
 };
-
-const trustStrip = document.querySelector('.trust-strip');
-const tickerToggle = trustStrip?.querySelector('.ticker-toggle');
-
-tickerToggle?.addEventListener('click', () => {
-  const isPaused = trustStrip.classList.toggle('is-paused');
-  updateMotionButton(tickerToggle, isPaused);
-});
 
 const installationVideo = document.querySelector('.about-media video');
 const mediaToggle = document.querySelector('.media-toggle');
 
-const syncMediaToggle = () => updateMotionButton(mediaToggle, installationVideo?.paused ?? true);
+const syncMediaToggle = () => updateMediaButton(mediaToggle, installationVideo?.paused ?? true);
 
 mediaToggle?.addEventListener('click', () => {
   if (!installationVideo) return;
@@ -260,8 +251,9 @@ inquiryForm?.addEventListener('submit', (event) => {
 const hero = document.querySelector('.hero');
 const lampStage = document.querySelector('.lamp-stage');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const precisePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-if (hero && lampStage && !reduceMotion.matches) {
+if (hero && lampStage && !reduceMotion.matches && precisePointer.matches) {
   hero.addEventListener('pointermove', (event) => {
     const bounds = hero.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - 0.5;
