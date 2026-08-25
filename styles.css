@@ -829,11 +829,168 @@ h1 em {
 .service-card:hover::before { opacity: 1; }
 .service-card > * { position: relative; z-index: 1; transform: translateZ(22px); }
 .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 66px; color: var(--muted); font-family: var(--font-mono); font-size: 11px; transition: color .35s ease; }
-.service-top i { position: relative; width: 30px; height: 30px; border: 1px solid currentColor; border-radius: 50%; }
-.service-top i::before,
-.service-top i::after { content: ""; position: absolute; top: 50%; left: 50%; background: currentColor; transform: translate(-50%, -50%); }
-.service-top i::before { width: 10px; height: 1px; }
-.service-top i::after { width: 1px; height: 10px; }
+.service-top .service-icon {
+  position: relative;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+.service-icon b,
+.service-icon b::before,
+.service-icon b::after { box-sizing: border-box; }
+.service-icon-install::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 1px;
+  height: 8px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+.service-icon-install::after {
+  content: "";
+  position: absolute;
+  top: 13px;
+  left: 50%;
+  width: 14px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  transform: translateX(-50%);
+}
+.service-icon-install b {
+  position: absolute;
+  top: 21px;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+  transform: translateX(-50%);
+}
+.service-icon-install b::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: -6px;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+}
+.service-icon-led::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 4px;
+  width: 5px;
+  height: 1px;
+  background: currentColor;
+}
+.service-icon-led::after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  right: 4px;
+  width: 5px;
+  height: 1px;
+  background: currentColor;
+}
+.service-icon-led b {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 18px;
+  height: 13px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+}
+.service-icon-led b::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 5px 0 currentColor, 10px 0 currentColor;
+}
+.service-icon-service::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 9px;
+  width: 1px;
+  height: 7px;
+  background: currentColor;
+}
+.service-icon-service::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  right: 6px;
+  width: 7px;
+  height: 1px;
+  background: currentColor;
+}
+.service-icon-service b {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 3px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+.service-icon-service b::before,
+.service-icon-service b::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.service-icon-service b::before { left: -5px; }
+.service-icon-service b::after { right: -5px; border-bottom-color: transparent; border-left-color: transparent; transform: translateY(-50%) rotate(45deg); }
+.service-icon-plan b {
+  position: absolute;
+  top: 8px;
+  left: 9px;
+  width: 14px;
+  height: 16px;
+  border: 1px solid currentColor;
+  border-radius: 1px;
+}
+.service-icon-plan b::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  width: 7px;
+  height: 1px;
+  background: currentColor;
+  box-shadow: 0 4px 0 currentColor;
+}
+.service-icon-plan b::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: 1px;
+  width: 10px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+}
 .service-card:hover .service-top { color: var(--warm); }
 .service-card h3 { margin: 0 0 18px; font-size: clamp(25px, 2.1vw, 34px); font-weight: 520; letter-spacing: -.04em; }
 .service-card > p { margin: 0; color: var(--support-paper); font-size: var(--detail-size); line-height: var(--detail-leading); transition: color .35s ease; }
@@ -1077,6 +1234,13 @@ h1 em {
 .about-facts > div { display: flex; flex-direction: column; gap: 7px; padding-right: 16px; }
 .about-facts strong { color: var(--warm); font-size: clamp(29px, 2.7vw, 42px); font-weight: 500; letter-spacing: -.055em; }
 .about-facts span { max-width: 145px; color: rgba(255, 255, 255, .58); font-size: 11px; line-height: 1.45; text-transform: uppercase; }
+html[lang="en"] .about-facts { grid-template-columns: .6fr .9fr 1.5fr; }
+html[lang="en"] .about-facts > div:nth-child(n + 2) strong {
+  font-size: clamp(23px, 2.2vw, 32px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
 .text-link { display: inline-flex; gap: 26px; align-items: center; margin-top: 38px; padding-bottom: 8px; border-bottom: 1px solid rgba(255, 255, 255, .56); font-size: 13px; font-weight: 650; }
 .text-link span { color: var(--warm); font-size: 18px; transition: transform .2s ease; }
 .text-link:hover span { transform: translate(3px, -3px); }
@@ -1661,6 +1825,28 @@ footer { padding: 54px 0 26px; background: var(--warm); }
   .about-media-label { right: -1px; bottom: 20px; min-width: 180px; }
   .about-facts { grid-template-columns: 1fr; gap: 22px; }
   .about-facts > div { display: grid; grid-template-columns: 90px 1fr; align-items: center; }
+  html[lang="en"] .about-facts { grid-template-columns: 1fr; gap: 0; padding-block: 0; }
+  html[lang="en"] .about-facts > div {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 5px;
+    min-width: 0;
+    padding: 18px 0;
+  }
+  html[lang="en"] .about-facts > div + div { border-top: 1px solid rgba(255, 255, 255, .12); }
+  html[lang="en"] .about-facts strong,
+  html[lang="en"] .about-facts > div:nth-child(n + 2) strong {
+    max-width: 100%;
+    font-size: clamp(24px, 7.5vw, 29px);
+    line-height: 1.1;
+    letter-spacing: -.035em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    text-wrap: balance;
+  }
+  html[lang="en"] .about-facts span { max-width: none; font-size: 10px; line-height: 1.45; }
   .compact-process { grid-template-columns: 1fr; }
   .compact-process > div { min-height: 165px; }
   .reference-list li { grid-template-columns: 38px 1fr; gap: 10px; padding: 19px 0; }
