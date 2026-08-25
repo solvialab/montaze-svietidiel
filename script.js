@@ -16,7 +16,7 @@ if (!pageLoader || skipPageLoader) {
     if (loaderDismissed) return;
     loaderDismissed = true;
 
-    const remainingTime = Math.max(0, 1550 - (performance.now() - loaderStartedAt));
+    const remainingTime = Math.max(0, 3000 - (performance.now() - loaderStartedAt));
     window.setTimeout(() => {
       pageLoader.classList.add('is-leaving');
       pageLoader.setAttribute('aria-hidden', 'true');

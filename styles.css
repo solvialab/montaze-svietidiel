@@ -94,18 +94,19 @@ body.is-loading > header * { animation-play-state: paused !important; }
 .site-loader.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
 .loader-scene {
   position: relative;
-  width: min(82vw, 330px);
-  height: 250px;
+  width: min(86vw, 370px);
+  height: 270px;
   transform: translateZ(0);
+  transform-origin: center bottom;
   transition: transform .58s cubic-bezier(.22, 1, .36, 1);
 }
-.site-loader.is-leaving .loader-scene { transform: translateY(-18px) scale(.96); }
+.site-loader.is-leaving .loader-scene { transform: translateY(-18px) scale(.94); }
 .loader-scene > span { position: absolute; display: block; left: 50%; }
 .loader-cord {
   z-index: 3;
   top: -22px;
   width: 1px;
-  height: 103px;
+  height: 108px;
   background: linear-gradient(#353735, #a48a64);
   box-shadow: 0 0 8px rgba(255, 206, 127, .12);
   transform: translateX(-50%) scaleY(0);
@@ -115,8 +116,8 @@ body.is-loading > header * { animation-play-state: paused !important; }
 .loader-socket {
   z-index: 4;
   top: 75px;
-  width: 27px;
-  height: 23px;
+  width: 30px;
+  height: 25px;
   border: 1px solid rgba(255, 255, 255, .26);
   border-radius: 4px 4px 9px 9px;
   background:
@@ -129,14 +130,14 @@ body.is-loading > header * { animation-play-state: paused !important; }
 .loader-bulb {
   z-index: 3;
   top: 93px;
-  width: 55px;
-  height: 64px;
+  width: 62px;
+  height: 72px;
   border: 1px solid rgba(255, 228, 184, .76);
   border-radius: 52% 52% 45% 45% / 56% 56% 42% 42%;
   background: radial-gradient(circle at 50% 45%, #fff9dd 0 9%, #ffd68e 34%, rgba(255, 189, 89, .18) 68%, rgba(255, 255, 255, .03) 100%);
   opacity: .08;
   transform: translateX(-50%) scale(.88);
-  animation: loader-ignite 1.18s .38s linear forwards;
+  animation: loader-ignite 1.18s .38s linear forwards, loader-bulb-breathe 1.5s 1.62s ease-in-out infinite;
 }
 .loader-bulb::before,
 .loader-bulb::after {
@@ -148,22 +149,22 @@ body.is-loading > header * { animation-play-state: paused !important; }
   background: rgba(120, 74, 20, .58);
   transform-origin: bottom;
 }
-.loader-bulb::before { left: 21px; transform: rotate(-17deg); }
-.loader-bulb::after { right: 21px; transform: rotate(17deg); }
+.loader-bulb::before { left: 24px; transform: rotate(-17deg); }
+.loader-bulb::after { right: 24px; transform: rotate(17deg); }
 .loader-bulb i {
   position: absolute;
-  right: 20px;
+  right: 22px;
   bottom: 17px;
-  left: 20px;
+  left: 22px;
   height: 8px;
   border-top: 1px solid rgba(120, 74, 20, .6);
   border-radius: 50%;
 }
 .loader-beam {
   z-index: 1;
-  top: 132px;
-  width: 310px;
-  height: 112px;
+  top: 139px;
+  width: 350px;
+  height: 126px;
   background: linear-gradient(to bottom, rgba(255, 214, 143, .2), rgba(255, 194, 91, .035) 72%, transparent);
   clip-path: polygon(43% 0, 57% 0, 100% 100%, 0 100%);
   filter: blur(4px);
@@ -175,8 +176,8 @@ body.is-loading > header * { animation-play-state: paused !important; }
 .loader-floor {
   z-index: 2;
   bottom: 7px;
-  width: 235px;
-  height: 18px;
+  width: 270px;
+  height: 20px;
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(255, 209, 130, .42), rgba(255, 194, 92, .08) 48%, transparent 72%);
   filter: blur(6px);
@@ -196,14 +197,14 @@ body.is-loading > header * { animation-play-state: paused !important; }
   animation: loader-copy-in .6s .54s cubic-bezier(.22, 1, .36, 1) forwards;
 }
 .site-loader > p strong {
-  font-size: clamp(13px, 2vw, 17px);
+  font-size: clamp(14px, 2.2vw, 19px);
   font-weight: 500;
   letter-spacing: .28em;
 }
 .site-loader > p strong em { color: var(--warm); font-style: normal; }
 .site-loader > p small {
   color: rgba(255, 255, 255, .42);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 650;
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -230,6 +231,7 @@ html.no-js body.is-loading { overflow-x: hidden; overflow-y: auto; }
 @keyframes loader-beam-on { to { opacity: 1; transform: translateX(-50%) scaleX(1); } }
 @keyframes loader-floor-on { to { opacity: 1; transform: translateX(-50%) scale(1); } }
 @keyframes loader-copy-in { to { opacity: 1; transform: translateY(0); } }
+@keyframes loader-bulb-breathe { 50% { filter: brightness(1.09); } }
 
 .shell { width: min(100% - 48px, 1380px); margin-inline: auto; }
 .section { padding-block: clamp(100px, 11vw, 170px); }
