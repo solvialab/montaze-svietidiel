@@ -1,5 +1,38 @@
 document.documentElement.classList.remove('no-js');
 
+// A short light-switch sequence on a direct first visit. Internal navigation,
+// reloads and reduced-motion visits skip it without writing browser storage.
+const pageLoader = document.querySelector('.site-loader');
+const skipPageLoader = document.documentElement.classList.contains('skip-loader');
+
+if (!pageLoader || skipPageLoader) {
+  document.body.classList.remove('is-loading');
+  pageLoader?.remove();
+} else {
+  const loaderStartedAt = performance.now();
+  let loaderDismissed = false;
+
+  const dismissPageLoader = () => {
+    if (loaderDismissed) return;
+    loaderDismissed = true;
+
+    const remainingTime = Math.max(0, 1550 - (performance.now() - loaderStartedAt));
+    window.setTimeout(() => {
+      pageLoader.classList.add('is-leaving');
+      pageLoader.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-loading');
+      window.setTimeout(() => pageLoader.remove(), 650);
+    }, remainingTime);
+  };
+
+  if (document.readyState === 'complete') {
+    dismissPageLoader();
+  } else {
+    window.addEventListener('load', dismissPageLoader, { once: true });
+    window.setTimeout(dismissPageLoader, 3500);
+  }
+}
+
 const isEnglish = document.documentElement.lang.toLowerCase().startsWith('en');
 const interfaceCopy = isEnglish
   ? {

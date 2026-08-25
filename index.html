@@ -13,6 +13,26 @@
     <link rel="alternate" hreflang="x-default" href="https://montaze-svietidiel.eu/">
     <link rel="icon" href="assets/favicon.png" type="image/png">
 
+    <script>
+      (() => {
+        const navigation = performance.getEntriesByType?.('navigation')[0];
+        const forceLoader = new URLSearchParams(location.search).has('show-loader');
+        let fromThisSite = false;
+        try {
+          fromThisSite = Boolean(document.referrer) && new URL(document.referrer).origin === location.origin;
+        } catch {}
+
+        if (!forceLoader && (
+          fromThisSite ||
+          navigation?.type === 'reload' ||
+          navigation?.type === 'back_forward' ||
+          matchMedia('(prefers-reduced-motion: reduce)').matches
+        )) {
+          document.documentElement.classList.add('skip-loader');
+        }
+      })();
+    </script>
+
     <meta property="og:type" content="website">
     <meta property="og:locale" content="sk_SK">
     <meta property="og:site_name" content="Flash of Light">
@@ -45,7 +65,18 @@
     </script>
   </head>
 
-  <body>
+  <body class="is-loading">
+    <div class="site-loader" role="status" aria-label="Načítava sa stránka">
+      <div class="loader-scene" aria-hidden="true">
+        <span class="loader-cord"></span>
+        <span class="loader-socket"></span>
+        <span class="loader-bulb"><i></i></span>
+        <span class="loader-beam"></span>
+        <span class="loader-floor"></span>
+      </div>
+      <p><strong>FLASH <em>OF LIGHT</em></strong><small>Rozsvecujeme váš priestor</small></p>
+    </div>
+
     <main>
       <section class="hero" id="domov">
         <div class="hero-grid-bg" aria-hidden="true"></div>

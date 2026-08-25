@@ -11,11 +11,41 @@
     <link rel="alternate" hreflang="sk" href="https://montaze-svietidiel.eu/privacy-sk.html">
     <link rel="alternate" hreflang="en" href="https://montaze-svietidiel.eu/privacy-en.html">
     <link rel="icon" href="assets/favicon.png" type="image/png">
+    <script>
+      (() => {
+        const navigation = performance.getEntriesByType?.('navigation')[0];
+        const forceLoader = new URLSearchParams(location.search).has('show-loader');
+        let fromThisSite = false;
+        try {
+          fromThisSite = Boolean(document.referrer) && new URL(document.referrer).origin === location.origin;
+        } catch {}
+
+        if (!forceLoader && (
+          fromThisSite ||
+          navigation?.type === 'reload' ||
+          navigation?.type === 'back_forward' ||
+          matchMedia('(prefers-reduced-motion: reduce)').matches
+        )) {
+          document.documentElement.classList.add('skip-loader');
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
   </head>
 
-  <body class="legal-page" id="top">
+  <body class="legal-page is-loading" id="top">
+    <div class="site-loader" role="status" aria-label="Loading page">
+      <div class="loader-scene" aria-hidden="true">
+        <span class="loader-cord"></span>
+        <span class="loader-socket"></span>
+        <span class="loader-bulb"><i></i></span>
+        <span class="loader-beam"></span>
+        <span class="loader-floor"></span>
+      </div>
+      <p><strong>FLASH <em>OF LIGHT</em></strong><small>Lighting your space</small></p>
+    </div>
+
     <header class="site-header shell is-scrolled">
       <a class="brand" href="en.html" aria-label="Flash of Light – home">
         <span class="brand-mark"><span></span></span>

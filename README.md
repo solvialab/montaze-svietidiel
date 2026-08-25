@@ -22,7 +22,7 @@ Potom otvor `http://localhost:8080`.
 - `en.html` — anglická verzia stránky
 - `privacy-sk.html` a `privacy-en.html` — informácie o súkromí a cookies
 - `styles.css` — dizajn, responzivita a animácie
-- `script.js` — sticky menu, formulár, galéria, scroll animácie a 3D pohyb
+- `script.js` — svetelný loader, sticky menu, formulár, galéria, scroll animácie a 3D pohyb
 - `assets/` — fotografie, video, lokálne fonty, favicon a social-preview obrázok
 
 Na bežný hosting stačí nahrať všetky `.html` súbory, `styles.css`, `script.js` a celý priečinok `assets`.
