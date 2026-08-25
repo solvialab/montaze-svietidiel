@@ -19,8 +19,10 @@ Potom otvor `http://localhost:8080`.
 ## Súbory
 
 - `index.html` — obsah stránky
+- `en.html` — anglická verzia stránky
+- `privacy-sk.html` a `privacy-en.html` — informácie o súkromí a cookies
 - `styles.css` — dizajn, responzivita a animácie
-- `script.js` — scroll animácie, mobilné menu a 3D pohyb
-- `assets/` — fotografie, video, favicon a social-preview obrázok
+- `script.js` — sticky menu, formulár, galéria, scroll animácie a 3D pohyb
+- `assets/` — fotografie, video, lokálne fonty, favicon a social-preview obrázok
 
-Na bežný hosting stačí nahrať tieto tri súbory a celý priečinok `assets`.
+Na bežný hosting stačí nahrať všetky `.html` súbory, `styles.css`, `script.js` a celý priečinok `assets`.

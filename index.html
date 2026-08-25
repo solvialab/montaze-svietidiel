@@ -8,10 +8,10 @@
     <title>Flash of Light | Profesionálna montáž svietidiel</title>
     <meta name="description" content="Profesionálna montáž, servis a návrh interiérového aj exteriérového osvetlenia v Bratislave.">
     <link rel="canonical" href="https://montaze-svietidiel.eu/">
+    <link rel="alternate" hreflang="sk" href="https://montaze-svietidiel.eu/">
+    <link rel="alternate" hreflang="en" href="https://montaze-svietidiel.eu/en.html">
+    <link rel="alternate" hreflang="x-default" href="https://montaze-svietidiel.eu/">
     <link rel="icon" href="assets/favicon.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
 
     <meta property="og:type" content="website">
     <meta property="og:locale" content="sk_SK">
@@ -66,6 +66,11 @@
           </nav>
 
           <div class="header-end">
+            <nav class="language-switch" aria-label="Výber jazyka">
+              <a href="index.html" lang="sk" hreflang="sk" aria-label="Slovenčina" aria-current="page">SK</a>
+              <span aria-hidden="true">/</span>
+              <a href="en.html" lang="en" hreflang="en" aria-label="English">EN</a>
+            </nav>
             <a class="header-call" href="tel:+421902842055">
               <span>Volajte</span>
               +421 902 842 055
@@ -138,6 +143,7 @@
             <span>Servis a opravy</span><i></i>
           </div>
         </div>
+        <button class="ticker-toggle" type="button" aria-label="Pozastaviť pohyb pásu" aria-pressed="false" data-pause-label="Pozastaviť pohyb pásu" data-play-label="Spustiť pohyb pásu"><span aria-hidden="true">Ⅱ</span></button>
       </section>
 
       <section class="services section" id="sluzby">
@@ -293,6 +299,7 @@
             <video autoplay muted loop playsinline poster="assets/project-03.jpg" aria-label="Ukážka profesionálnej montáže svietidla">
               <source src="assets/installation-loop.mp4" type="video/mp4">
             </video>
+            <button class="media-toggle" type="button" aria-label="Pozastaviť video" aria-pressed="false" data-pause-label="Pozastaviť video" data-play-label="Spustiť video"><span aria-hidden="true">Ⅱ</span></button>
             <div class="about-media-label"><span>Proces</span><strong>Precízna montáž</strong></div>
           </div>
 
@@ -392,11 +399,11 @@
             </a>
           </div>
 
-          <form class="inquiry-form reveal" id="contact-form" action="mailto:info@montaze-svietidiel.eu" method="post" enctype="text/plain">
+          <form class="inquiry-form reveal" id="contact-form" aria-labelledby="form-title" action="mailto:info@montaze-svietidiel.eu" method="post" enctype="text/plain">
             <div class="form-intro">
               <div>
                 <span class="form-kicker"><i></i> Nezáväzný dopyt</span>
-                <h3>Čo potrebujete <em>rozsvietiť?</em></h3>
+                <h3 id="form-title">Čo potrebujete <em>rozsvietiť?</em></h3>
                 <p>Vyberte typ služby a napíšte nám základné informácie. Pripravíme si riešenie ešte pred prvým telefonátom.</p>
               </div>
               <span class="form-response"><i></i> Ozveme sa čo najskôr</span>
@@ -479,7 +486,7 @@
             </fieldset>
 
             <div class="form-submit-row">
-              <p><i></i> Údaje použijeme iba na vybavenie vášho dopytu. Fotografiu môžete priložiť následne v e-maile.</p>
+              <p><i></i> Odoslaním e-mailového dopytu beriete na vedomie spracúvanie údajov na účely vybavenia požiadavky. <a href="privacy-sk.html">Viac o ochrane údajov</a>. Fotografiu môžete priložiť následne v e-maile.</p>
               <button class="form-submit" type="submit"><span>Pripraviť dopyt</span><b>↗</b></button>
             </div>
             <p class="form-status" role="status" aria-live="polite"></p>
@@ -503,10 +510,11 @@
           <div class="footer-links">
             <a href="https://www.facebook.com/FoLmontazesvietidiel/" target="_blank" rel="noreferrer">Facebook ↗</a>
             <a href="mailto:info@montaze-svietidiel.eu">E-mail</a>
+            <a href="privacy-sk.html">Ochrana súkromia</a>
             <a href="#domov">Hore ↑</a>
           </div>
         </div>
-        <div class="shell footer-bottom"><span>© 2026 FLASH of LIGHT, s. r. o.</span><span>DIČ 2120092535</span></div>
+        <div class="shell footer-bottom"><span>© 2026 FLASH of LIGHT, s. r. o.</span><a href="privacy-sk.html#cookies">Web nepoužíva voliteľné cookies</a><span>DIČ 2120092535</span></div>
       </footer>
 
       <a class="floating-call" href="tel:+421902842055" aria-label="Zavolať na +421 902 842 055"><span>☎</span> Zavolať</a>

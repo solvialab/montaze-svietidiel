@@ -1,5 +1,71 @@
 document.documentElement.classList.remove('no-js');
 
+const isEnglish = document.documentElement.lang.toLowerCase().startsWith('en');
+const interfaceCopy = isEnglish
+  ? {
+      galleryCategory: 'Project',
+      galleryTitle: 'Light fitting installation',
+      generalEnquiry: 'General enquiry',
+      notProvided: 'Not provided',
+      agreed: 'To be agreed',
+      noMessage: 'No additional message',
+      subject: (category) => `Website enquiry — ${category}`,
+      emailBody: ({ category, name, phone, email, location, scope, term, message }) => [
+        'Hello,',
+        '',
+        `I am interested in: ${category}`,
+        '',
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `Email: ${email}`,
+        `Installation location: ${location}`,
+        `Project scope: ${scope}`,
+        `Preferred timing: ${term}`,
+        '',
+        'Enquiry details:',
+        message,
+        '',
+        'I can attach photos to this email.',
+      ].join('\n'),
+      openingEmail: 'Your enquiry is ready. Opening your email app…',
+      emailFallback: 'If your email app did not open, please send your enquiry directly to info@montaze-svietidiel.eu.',
+    }
+  : {
+      galleryCategory: 'Realizácia',
+      galleryTitle: 'Montáž svietidla',
+      generalEnquiry: 'Všeobecný dopyt',
+      notProvided: 'Neuvedené',
+      agreed: 'Dohodou',
+      noMessage: 'Bez doplňujúcej správy',
+      subject: (category) => `Dopyt z webu — ${category}`,
+      emailBody: ({ category, name, phone, email, location, scope, term, message }) => [
+        'Dobrý deň,',
+        '',
+        `mám záujem o službu: ${category}`,
+        '',
+        `Meno: ${name}`,
+        `Telefón: ${phone}`,
+        `E-mail: ${email}`,
+        `Lokalita montáže: ${location}`,
+        `Rozsah zákazky: ${scope}`,
+        `Preferovaný termín: ${term}`,
+        '',
+        'Popis dopytu:',
+        message,
+        '',
+        'Fotografie môžem priložiť do tohto e-mailu.',
+      ].join('\n'),
+      openingEmail: 'Dopyt je pripravený. Otváram váš e-mailový program…',
+      emailFallback: 'Ak sa e-mail neotvoril, pošlite dopyt priamo na info@montaze-svietidiel.eu.',
+    };
+
+// Compact sticky navigation after the visitor leaves the top of the page.
+const siteHeader = document.querySelector('.site-header');
+const keepHeaderSolid = document.body.classList.contains('legal-page');
+const updateStickyHeader = () => siteHeader?.classList.toggle('is-scrolled', keepHeaderSolid || window.scrollY > 24);
+updateStickyHeader();
+window.addEventListener('scroll', updateStickyHeader, { passive: true });
+
 // Reveal sections as they enter the viewport.
 const revealItems = document.querySelectorAll('.reveal');
 
@@ -26,6 +92,43 @@ mobileMenu?.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => mobileMenu.removeAttribute('open'));
 });
 
+// Visitors can pause the two continuously moving content elements.
+const updateMotionButton = (button, isPaused) => {
+  if (!button) return;
+  button.setAttribute('aria-pressed', String(isPaused));
+  button.setAttribute('aria-label', isPaused ? button.dataset.playLabel : button.dataset.pauseLabel);
+  button.querySelector('span').textContent = isPaused ? '▶' : 'Ⅱ';
+};
+
+const trustStrip = document.querySelector('.trust-strip');
+const tickerToggle = trustStrip?.querySelector('.ticker-toggle');
+
+tickerToggle?.addEventListener('click', () => {
+  const isPaused = trustStrip.classList.toggle('is-paused');
+  updateMotionButton(tickerToggle, isPaused);
+});
+
+const installationVideo = document.querySelector('.about-media video');
+const mediaToggle = document.querySelector('.media-toggle');
+
+const syncMediaToggle = () => updateMotionButton(mediaToggle, installationVideo?.paused ?? true);
+
+mediaToggle?.addEventListener('click', () => {
+  if (!installationVideo) return;
+
+  if (installationVideo.paused) {
+    const playRequest = installationVideo.play();
+    playRequest?.catch(syncMediaToggle);
+  } else {
+    installationVideo.pause();
+  }
+});
+
+installationVideo?.addEventListener('play', syncMediaToggle);
+installationVideo?.addEventListener('pause', syncMediaToggle);
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) installationVideo?.pause();
+syncMediaToggle();
+
 // Keep project photographs on the page in an accessible modal gallery.
 const galleryLinks = [...document.querySelectorAll('[data-lightbox]')];
 const lightbox = document.querySelector('.lightbox');
@@ -48,8 +151,8 @@ const showGalleryImage = (index) => {
 
   lightboxImage.src = link.getAttribute('href');
   lightboxImage.alt = image?.alt || '';
-  lightboxCategory.textContent = figure?.querySelector('figcaption span')?.textContent || 'Realizácia';
-  lightboxTitle.textContent = figure?.querySelector('figcaption strong')?.textContent || 'Montáž svietidla';
+  lightboxCategory.textContent = figure?.querySelector('figcaption span')?.textContent || interfaceCopy.galleryCategory;
+  lightboxTitle.textContent = figure?.querySelector('figcaption strong')?.textContent || interfaceCopy.galleryTitle;
   lightboxNumber.textContent = String(activeImage + 1);
 };
 
@@ -100,39 +203,23 @@ inquiryForm?.addEventListener('submit', (event) => {
   event.preventDefault();
 
   const formData = new FormData(inquiryForm);
-  const category = String(formData.get('category') || 'Všeobecný dopyt');
-  const name = String(formData.get('name') || 'Neuvedené');
-  const phone = String(formData.get('phone') || 'Neuvedený');
-  const email = String(formData.get('email') || 'Neuvedený');
-  const location = String(formData.get('location') || 'Neuvedená');
-  const scope = String(formData.get('scope') || 'Neuvedený');
-  const term = String(formData.get('term') || 'Dohodou');
-  const message = String(formData.get('message') || 'Bez doplňujúcej správy');
+  const category = String(formData.get('category') || interfaceCopy.generalEnquiry);
+  const name = String(formData.get('name') || interfaceCopy.notProvided);
+  const phone = String(formData.get('phone') || interfaceCopy.notProvided);
+  const email = String(formData.get('email') || interfaceCopy.notProvided);
+  const location = String(formData.get('location') || interfaceCopy.notProvided);
+  const scope = String(formData.get('scope') || interfaceCopy.notProvided);
+  const term = String(formData.get('term') || interfaceCopy.agreed);
+  const message = String(formData.get('message') || interfaceCopy.noMessage);
 
-  const subject = `Dopyt z webu — ${category}`;
-  const body = [
-    'Dobrý deň,',
-    '',
-    `mám záujem o službu: ${category}`,
-    '',
-    `Meno: ${name}`,
-    `Telefón: ${phone}`,
-    `E-mail: ${email}`,
-    `Lokalita montáže: ${location}`,
-    `Rozsah zákazky: ${scope}`,
-    `Preferovaný termín: ${term}`,
-    '',
-    'Popis dopytu:',
-    message,
-    '',
-    'Fotografie môžem priložiť do tohto e-mailu.',
-  ].join('\n');
+  const subject = interfaceCopy.subject(category);
+  const body = interfaceCopy.emailBody({ category, name, phone, email, location, scope, term, message });
 
-  formStatus.textContent = 'Dopyt je pripravený. Otváram váš e-mailový program…';
+  formStatus.textContent = interfaceCopy.openingEmail;
   window.location.href = `mailto:info@montaze-svietidiel.eu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   window.setTimeout(() => {
-    formStatus.textContent = 'Ak sa e-mail neotvoril, pošlite dopyt priamo na info@montaze-svietidiel.eu.';
+    formStatus.textContent = interfaceCopy.emailFallback;
   }, 1400);
 });
 
